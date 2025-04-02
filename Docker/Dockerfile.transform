@@ -1,0 +1,20 @@
+#docker build -t transform:v1 -f Dockerfile.transform .
+# FROM alpine
+# RUN  apk update
+# RUN  apk add sqlite
+# COPY transform.sql /transform.sql
+
+
+FROM alpine
+
+# Install SQLite in a single RUN layer
+RUN apk update && apk add --no-cache sqlite
+
+# Set working directory
+WORKDIR /app
+
+# Copy the SQL script
+COPY transform.sql .
+
+# Default command (change if needed)
+CMD ["sleep", "infinity"]

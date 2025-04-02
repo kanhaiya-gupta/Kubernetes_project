@@ -1,0 +1,15 @@
+#docker build -t extract:v1 -f Dockerfile.extract .
+# FROM alpine
+# COPY yellow_tripdata_2024-01.partial.csv /yellow_tripdata_2024-01.partial.csv
+
+
+FROM alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy the dataset into the container
+COPY yellow_tripdata_2024-01.partial.csv .
+
+# Keep the container running (Optional, remove if not needed)
+CMD ["sleep", "infinity"]

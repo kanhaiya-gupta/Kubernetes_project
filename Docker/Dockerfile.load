@@ -1,0 +1,20 @@
+#docker build -t load:v1 -f Dockerfile.load .
+# FROM alpine
+# RUN  apk update
+# RUN  apk add sqlite
+# COPY load.sql /load.sql
+
+
+FROM alpine
+
+# Install SQLite in a single RUN layer
+RUN apk update && apk add --no-cache sqlite
+
+# Set working directory
+WORKDIR /app
+
+# Copy the SQL script
+COPY load.sql .
+
+# Default command (change if needed)
+CMD ["sleep", "infinity"]
